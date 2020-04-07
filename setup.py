@@ -1,15 +1,15 @@
 import pathlib
 from setuptools import setup
 
-# The directory containing this file
-HERE = pathlib.Path(__file__).parent
+with open("README.md", "r") as fh:
+    long_description = fh.read()
 
 # This call to setup() does all the work
 setup(
     name="getdep",
-    version="1.0.0",
-    description="Get dependencies for a given package management system and a given package.",
-    long_description="README.md",
+    version="1.0.2",
+    description="Get dependencies for a given package management system and a given package",
+    long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/remiflavien1/getdep",
     author="shadawck",
@@ -22,5 +22,5 @@ setup(
     ],
     packages=["getdep"],
     include_package_data=True,
-    install_requires=["requests", "json", "shlex", "subprocess"],
+    install_requires=["requests"]
 )
