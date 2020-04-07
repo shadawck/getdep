@@ -47,4 +47,4 @@ Supported PMS are :
 
 
 ## Note 
-You need to have the package management system, you make a request for, installed on you system.
+You must have the package management system, which you are requesting, installed on your system.
