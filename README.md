@@ -2,9 +2,7 @@
 
 Get dependencies for a given package management system and a given package. 
 
-
-## Installation
-
+## Use
 
 You can install ```getdep``` either via pip (PyPI) or from source.
 To install using pip:
@@ -22,7 +20,6 @@ For ```apt``` dependencies you need to install ```apt-rdepends```:
 ```bash
 sudo apt install apt-rdepends
 ```
-
 
 ## Use
 
@@ -44,6 +41,8 @@ Supported PMS are :
          npm        
          pip    
 ```
+
+
 
 
 ## Note 
