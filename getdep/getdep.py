@@ -14,7 +14,7 @@ def get_apt_dependencies(package):
     """
     aptDependencies = []
 
-    p = utility_pms.get_dependencies("apt", package)
+    p = utility.get_dependencies("apt", package)
     # filter packages
     for word in p.stdout.split():
         if word.startswith("Depends:") or word.endswith(")") or word.startswith("("):
@@ -35,7 +35,7 @@ def get_pip_dependencies(package):
 
     """
     pipDependencies = []
-    p = utility_pms.get_dependencies("pip", package)
+    p = utility.get_dependencies("pip", package)
     
     try:    
         data = json.loads(p)['info']['requires_dist']
@@ -64,7 +64,7 @@ def get_composer_dependencies(package):
     """
     composerDependencies = []
     try:
-        p = utility_pms.get_dependencies("composer", package)
+        p = utility.get_dependencies("composer", package)
 
         data = json.loads(p)["package"]["versions"]
         for x in data :
@@ -80,7 +80,7 @@ def get_composer_dependencies(package):
         
     except UnboundLocalError:
         print("Your Package Management System : is not supported")
-        utility_pms.print_supported_pms()
+        utility.print_supported_pms()
         return []
     except KeyError:
         print("This package doesn't exist on packagist")
@@ -101,7 +101,7 @@ def get_gem_dependencies(package):
 
     gemDependencies = []
     try:
-        p = utility_pms.get_dependencies("gem", package)
+        p = utility.get_dependencies("gem", package)
 
         motif = p.stdout.split("\n")
 
@@ -118,7 +118,7 @@ def get_gem_dependencies(package):
         
     except UnboundLocalError:
         print("Your Package Management System : is not supported")
-        utility_pms.print_supported_pms()
+        utility.print_supported_pms()
         return []
 
 def get_npm_dependencies(package): 
@@ -133,7 +133,7 @@ def get_npm_dependencies(package):
     """
 
     npmDependencies = []
-    p = utility_pms.get_dependencies("npm",package) # Json data
+    p = utility.get_dependencies("npm",package) # Json data
     try:    
         loaded_json = json.loads(p.stdout)
         for word in loaded_json:
