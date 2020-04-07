@@ -12,7 +12,7 @@ setup(
     long_description="README.md",
     long_description_content_type="text/markdown",
     url="https://github.com/remiflavien1/getdep",
-    author="Rémi HUGUET - fractalizer",
+    author="shadawck",
     author_email="hug211mire@gmail.com",
     license="MIT",
     classifiers=[
@@ -20,12 +20,7 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.7",
     ],
-    packages=["scabi"],
+    packages=["getdep"],
     include_package_data=True,
     install_requires=["requests", "json", "shlex", "subprocess"],
-    entry_points={
-        "console_scripts": [
-            "scabi=scabi.__main__:main",
-        ]
-    },
 )
