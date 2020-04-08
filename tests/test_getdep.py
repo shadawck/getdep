@@ -11,7 +11,7 @@ class TestGetdep:
 
     def test_getAptDependencies(self):
         package = 'nano'
-        cst_dep = ['libc6', 'libncursesw5', 'libtinfo5', 'libgcc1', 'gcc-8-base']
+        cst_dep = ['libc6', 'libncursesw5', 'libtinfo5', 'libgcc1', 'gcc-9-base']
 
         dep = getdep.get_apt_dependencies(package)
 
