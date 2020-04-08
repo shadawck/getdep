@@ -1,4 +1,3 @@
-import pytest
 from getdep import getdep
 import collections
 import functools

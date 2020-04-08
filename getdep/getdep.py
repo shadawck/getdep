@@ -108,6 +108,7 @@ def get_gem_dependencies(package):
             gemDependencies.append(word["name"].strip())
 
         return gemDependencies
+
     except UnboundLocalError:
         print("Your Package Management System : is not supported")
         utility.print_supported_pms()

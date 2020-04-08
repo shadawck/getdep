@@ -48,8 +48,6 @@ def get_dependencies(pms_name, package):
         commandToRun = ["sudo", "npm", "view", "--json", str(package), "dependencies"]
     
     elif pms_name=='gem' :
-        # commandToRun = ["sudo", "gem", "dependency", "--pipe" , str(package)]
-        
         base_url = "https://rubygems.org/api/v1/gems/"
         url = base_url + package + ".json" 
         return requests.get(url,stream=True).text
