@@ -44,17 +44,21 @@ def get_dependencies(pms_name, package):
     if pms_name=="apt" or pms_name=='apt-get':
         commandToRun = ["sudo", "apt-rdepends", str(package)]
 
-    elif pms_name=='gem' :
-        commandToRun = ["sudo", "gem", "dependency", "--pipe" , str(package)]
-
     elif pms_name=='npm' :
         commandToRun = ["sudo", "npm", "view", "--json", str(package), "dependencies"]
     
+    elif pms_name=='gem' :
+        # commandToRun = ["sudo", "gem", "dependency", "--pipe" , str(package)]
+        
+        base_url = "https://rubygems.org/api/v1/gems/"
+        url = base_url + package + ".json" 
+        return requests.get(url,stream=True).text
+        
     elif pms_name == 'composer' :  
         base_url = "https://repo.packagist.org/packages/"
         # Make api request to packagist # Ex : GET https://repo.packagist.org/packages/paragonie/random-lib.json
         url = base_url + package + ".json" 
-        return requests.get(url).text 
+        return requests.get(url, stream=True).text 
 
     elif pms_name == 'pip': 
         base_url = "https://pypi.org/pypi/"

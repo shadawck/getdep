@@ -88,7 +88,7 @@ def get_composer_dependencies(package):
         # if data doesn't exist. At this moment composerDependencies = []
         return []
 
-def get_gem_dependencies(package): 
+def get_gem_dependencies(package):
     """Get list of dependencies from gem command.
   
     Args:
@@ -98,27 +98,26 @@ def get_gem_dependencies(package):
         list. A list of all dependencies found.
 
     """
+
     gemDependencies = []
-    try:
+    try :
         p = utility.get_dependencies("gem", package)
+        data = json.loads(p)["dependencies"]["runtime"]
 
-        motif = p.stdout.split("\n")
-
-        for word in motif[0:-1]: 
-            # remvove different Gem version
-            if word.startswith(package):
-                continue 
-            gemDependencies.append(word.split("--version")[0].strip())
-
-        # remove double
-        gemDependencies = list(OrderedDict.fromkeys(gemDependencies))
+        for word in data :
+            gemDependencies.append(word["name"].strip())
 
         return gemDependencies
-        
     except UnboundLocalError:
         print("Your Package Management System : is not supported")
         utility.print_supported_pms()
         return []
+    except KeyError:
+        print("This package doesn't exist on rubygem")
+    except json.decoder.JSONDecodeError:
+        # if data doesn't exist. At this moment composerDependencies = []
+        return []
+
 
 def get_npm_dependencies(package): 
     """Get list of dependencies from npm command.
@@ -142,3 +141,37 @@ def get_npm_dependencies(package):
         return []
     
     return npmDependencies
+
+#def get_gem_dependencies_local(package): 
+#    """Get list of dependencies from gem command.
+#  
+#    Args:
+#        package (str): The package name for the gem package you want to install.
+#
+#    Return:
+#        list. A list of all dependencies found.
+#
+#    """
+#    gemDependencies = []
+#    try:
+#        p = utility.get_dependencies("gem", package)
+#
+#        motif = p.stdout.split("\n")
+#
+#        for word in motif[0:-1]: 
+#            # remvove different Gem version
+#            if word.startswith(package):
+#                continue 
+#            gemDependencies.append(word.split("--version")[0].strip())
+#
+#        # remove double
+#        gemDependencies = list(OrderedDict.fromkeys(gemDependencies))
+#
+#        return gemDependencies
+#        
+#    except UnboundLocalError:
+#        print("Your Package Management System : is not supported")
+#        utility.print_supported_pms()
+#        return []
+
+
