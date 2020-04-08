@@ -6,6 +6,15 @@ from setuptools import setup
 with open("README.md", "r") as fh:
     long_description = fh.read()
 
+# test dependencies
+test_deps = [
+    'pytest',
+    'pytest-cov',
+]
+extras = {
+    'test': test_deps,
+}
+
 # This call to setup() does all the work
 setup(
     name="getdep",
@@ -24,5 +33,7 @@ setup(
     ],
     packages=["getdep"],
     include_package_data=True,
-    install_requires=["requests"]
+    install_requires=["requests"],
+    tests_require=test_deps,
+    extras_require=extras
 )

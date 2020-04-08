@@ -1,4 +1,4 @@
-import getdep
+from getdep import getdep
 import collections
 import functools
 
