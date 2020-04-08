@@ -12,8 +12,9 @@ python3 -m pip install getdep
 Or manually:
 ```
 git clone https://github.com/remiflavien1/getdep 
-cd getdep
-./install.sh python3 setup.py install
+cd getdep   
+./install.sh   
+python3 setup.py install   
 ```
 
 For ```apt``` dependencies you need to install ```apt-rdepends```:
