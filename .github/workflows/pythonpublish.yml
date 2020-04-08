@@ -33,6 +33,9 @@ jobs:
     runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
+      - name: Install system dependencies
+        run: |
+          sudo apt-get install apt-rdepends
       - name: Set up Python
         uses: actions/setup-python@master
         with:
