@@ -39,8 +39,10 @@ jobs:
           python-version: 3.8
       - name: Run unit tests
         run: |
-          pip install pytest
-          pytest
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+          pip install -e .[test]
+          python -m pytest
       - name: Wemake Python Stylguide
         uses: wemake-services/wemake-python-styleguide@0.13.4
         continue-on-error: true
