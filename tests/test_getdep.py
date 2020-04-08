@@ -46,8 +46,7 @@ class TestGetdep:
     
     def test_getGemDependencies(self):
         package = "globalize"
-        cst_dep = ["activemodel", "activerecord", "request_store"].sort()
-        dep = getdep.get_gem_dependencies(package).sort()
+        cst_dep = ["activemodel", "activerecord", "request_store"]
+        dep = getdep.get_gem_dependencies(package)
 
         assert set(cst_dep) == set(dep)
-        print(dep)
