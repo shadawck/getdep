@@ -20,8 +20,8 @@ def get_apt_dependencies(package):
         if word.startswith("Depends:") or word.endswith(")") or word.startswith("("):
             continue
         aptDependencies.append(word)
-    # remove double
-    aptDependencies = list(OrderedDict.fromkeys(aptDependencies))
+    # remove double and the first element which is the "package" name
+    aptDependencies = list(OrderedDict.fromkeys(aptDependencies[1:]))
     return aptDependencies
 
 def get_pip_dependencies(package): 
@@ -98,7 +98,6 @@ def get_gem_dependencies(package):
         list. A list of all dependencies found.
 
     """
-
     gemDependencies = []
     try:
         p = utility.get_dependencies("gem", package)
