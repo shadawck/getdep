@@ -118,7 +118,6 @@ def get_gem_dependencies(package):
         # if data doesn't exist. At this moment composerDependencies = []
         return []
 
-
 def get_npm_dependencies(package): 
     """Get list of dependencies from npm command.
 
