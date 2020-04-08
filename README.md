@@ -13,7 +13,7 @@ Or manually:
 ```
 git clone https://github.com/remiflavien1/getdep 
 cd getdep
-./install.sh && setup.py
+./install.sh python3 setup.py install
 ```
 
 For ```apt``` dependencies you need to install ```apt-rdepends```:
@@ -41,9 +41,6 @@ Supported PMS are :
          npm        
          pip    
 ```
-
-
-
 
 ## Note 
 You must have the package management system, which you are requesting, installed on your system.
