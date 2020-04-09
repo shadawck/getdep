@@ -4,11 +4,6 @@ import functools
 
 # Test getdep for all method (pip, gem, composer...)
 class TestGetdep:
-
-    def c_list(self,list1, list2):
-        return(functools.reduce(lambda i, j : i and j, map(lambda m, k: m == k, list1, list2), True))
-
-
     def test_getAptDependencies(self):
         package = 'nano'
         cst_dep = ['libc6', 'libncursesw5', 'libtinfo5', 'libgcc1', 'gcc-9-base']
