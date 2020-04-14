@@ -15,7 +15,7 @@ coverage:
 
 clean:
 	rm -rf __pycache__
-	rm -rf tests/__pycache__
+	rm -rf */__pycache__
 	rm -rf .pytest_cache
 	rm -rf coverage.xml .coverage
 	rm -rf .vscode
