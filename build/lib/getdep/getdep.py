@@ -90,7 +90,6 @@ def get_composer_dependencies(package):
         return []
     except KeyError:
         print("This package doesn't exist on packagist")
-        return []
     except json.decoder.JSONDecodeError:
         # if data doesn't exist. At this moment composerDependencies = []
         return []

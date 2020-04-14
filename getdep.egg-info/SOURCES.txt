@@ -1,0 +1,10 @@
+README.md
+setup.py
+getdep/__init__.py
+getdep/getdep.py
+getdep/utility.py
+getdep.egg-info/PKG-INFO
+getdep.egg-info/SOURCES.txt
+getdep.egg-info/dependency_links.txt
+getdep.egg-info/requires.txt
+getdep.egg-info/top_level.txt

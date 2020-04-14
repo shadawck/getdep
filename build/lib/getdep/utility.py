@@ -69,7 +69,7 @@ def get_dependencies(pms_name, package):
 
 def print_dependencies(package, listDependencies):
     if listDependencies == [] :
-        print("No dependencies found")
+        print("Ne dependencies found")
     else :
         print("The dependencies for <" + package + "> are :")
         for dep in listDependencies : 
