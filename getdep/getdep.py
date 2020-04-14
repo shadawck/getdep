@@ -34,6 +34,8 @@ def get_pip_dependencies(package):
         list. A list of all dependencies found.
 
     """
+
+
     pipDependencies = []
     p = utility.get_dependencies("pip", package)
     
@@ -47,6 +49,10 @@ def get_pip_dependencies(package):
             
     except TypeError:
         return [] # if data doesn't exist
+    except json.decoder.JSONDecodeError:  
+        print("Your package was not found on Pypi")
+        return []
+
 
     return pipDependencies
         

@@ -30,10 +30,13 @@ setup(
         "License :: OSI Approved :: MIT License",
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.7",
+        'Topic :: Security',
+        'Topic :: Security :: Cryptography'
     ],
     packages=["getdep"],
     include_package_data=True,
     install_requires=["requests"],
+    keywords='security, dependencies, package management, dependencies manager',
     tests_require=test_deps,
     extras_require=extras
 )

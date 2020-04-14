@@ -1,10 +1,10 @@
 MODULE=getdep
 
 
-require:	
-	python3 -m pip install -r requirements.txt 
+require:
+	python3 -m pip install -r requirements.txt
 
-requiretest: 
+requiretest:
 	python3 -m pip install -e .[test]
 
 test:
@@ -13,7 +13,7 @@ test:
 coverage:
 	python3 -m pytest --cov=./ --cov-report=xml
 
-clean: 
+clean:
 	rm -rf __pycache__
 	rm -rf tests/__pycache__
 	rm -rf .pytest_cache
