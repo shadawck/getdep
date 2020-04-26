@@ -18,7 +18,7 @@ extras = {
 # This call to setup() does all the work
 setup(
     name="getdep",
-    version="1.1.1",
+    version="1.1.2",
     description="Get dependencies for a given package management system and a given package",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -31,7 +31,6 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.7",
         'Topic :: Security',
-        'Topic :: Security :: Cryptography'
     ],
     packages=["getdep"],
     include_package_data=True,

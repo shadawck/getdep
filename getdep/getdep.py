@@ -35,7 +35,6 @@ def get_pip_dependencies(package):
 
     """
 
-
     pipDependencies = []
     p = utility.get_dependencies("pip", package)
     
@@ -148,6 +147,19 @@ def get_npm_dependencies(package):
         return []
     
     return npmDependencies
+
+
+def get_yarn_dependencies(package):
+    pass
+
+def get_chocolate_dependencies(package):
+    pass
+
+def get_pacman_dependencies(package):
+    pass
+
+def get_brew_dependencies(package):
+    pass
 
 #def get_gem_dependencies_local(package): 
 #    """Get list of dependencies from gem command.
