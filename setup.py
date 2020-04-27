@@ -18,7 +18,7 @@ extras = {
 # This call to setup() does all the work
 setup(
     name="getdep",
-    version="1.1.2",
+    version="1.2.0",
     description="Get dependencies for a given package management system and a given package",
     long_description=long_description,
     long_description_content_type="text/markdown",
@@ -35,7 +35,7 @@ setup(
     packages=["getdep"],
     include_package_data=True,
     install_requires=["requests"],
-    keywords='security, dependencies, package management, dependencies manager',
+    keywords='security, dependencies, package management, dependencies manager', 'composer', 'yarn', 'apt', 'chocolatey', 'nuget',
     tests_require=test_deps,
     extras_require=extras
 )
