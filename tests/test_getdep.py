@@ -6,9 +6,10 @@ import functools
 class TestGetdep:
     def test_getAptDependencies(self):
         package = 'nano'
-        cst_dep = ['libc6', 'libncursesw5', 'libtinfo5', 'libgcc1', 'gcc-9-base']
+        cst_dep = ['libc6', 'libncursesw5', 'libtinfo5', 'libgcc1', 'gcc-10-base']
 
         dep = getdep.get_apt_dependencies(package)
+        
 
         assert set(cst_dep) == set(dep)
 
@@ -34,7 +35,7 @@ class TestGetdep:
         package = "gulp"
         cst_dep = ['glob-watcher', 'gulp-cli', 'undertaker', 'vinyl-fs']
 
-        dep = getdep.get_npm_dependencies(package)
+        dep = getdep.get_yarn_dependencies(package)
 
         assert set(cst_dep) == set(dep)
     
