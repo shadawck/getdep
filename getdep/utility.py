@@ -15,6 +15,8 @@ def get_supported_pms():
             'composer',
             'gem',
             'npm',
+            'yarn',
+            'brew',
             'pip'
             ]
     
@@ -51,9 +53,13 @@ def get_dependencies(pms_name, package):
     # Switch case for all pms supported : gem , apt, rpm , composer....
     if pms_name=="apt" or pms_name=='apt-get':
         commandToRun = ["sudo", "apt-rdepends", str(package)]
-
-    elif pms_name=='npm' :
-        commandToRun = ["sudo", "npm", "view", "--json", str(package), "dependencies"]
+        p = subprocess.run(commandToRun, stdout=subprocess.PIPE,  encoding="ascii")
+        return p
+        
+    elif pms_name=='yarn' or pms_name == 'npm':
+        base_url = "https://cdn.jsdelivr.net/npm/"
+        url = base_url + package + "/package.json" 
+        return requests.get(url,stream=True).text
     
     elif pms_name=='gem' :
         base_url = "https://rubygems.org/api/v1/gems/"
@@ -75,8 +81,4 @@ def get_dependencies(pms_name, package):
         base_url = "https://pypi.org/pypi/"
         url = base_url + package + "/json" 
         return requests.get(url,stream=True).text
-
-    # Run command "commandToRun" for above pms
-    p = subprocess.run(commandToRun, stdout=subprocess.PIPE,  encoding="ascii")
-    return p
 

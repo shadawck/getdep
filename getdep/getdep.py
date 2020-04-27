@@ -1,7 +1,7 @@
 import json
 from collections import OrderedDict
 from getdep import utility
-
+from pprint import pprint
 def get_apt_dependencies(package):
     """Get list of dependencies from apt command.
     
@@ -125,31 +125,24 @@ def get_gem_dependencies(package):
         # if data doesn't exist. At this moment composerDependencies = []
         return []
 
-def get_npm_dependencies(package): 
-    """Get list of dependencies from npm command.
+# Use yarn for npm and yarn pms
+def get_yarn_dependencies(package):
+    yarnDependencies = []
+    p = utility.get_dependencies("yarn", package)
+    try :
+        yarnDependencies = json.loads(p)["dependencies"]
 
-    Args:
-        package (str): The package name for the npm package you want to install.
-
-    Return:
-        list. A list of all dependencies found.
-
-    """
-
-    npmDependencies = []
-    p = utility.get_dependencies("npm",package) # Json data
-    try:    
-        loaded_json = json.loads(p.stdout)
-        for word in loaded_json:
-        	npmDependencies.append(word)
-            
+    except UnboundLocalError:
+        print("Your Package Management System : is not supported")
+        utility.print_supported_pms()
+        return []
+    except KeyError:
+        print("This package doesn't exist on yarn")
     except json.decoder.JSONDecodeError:
+        # if data doesn't exist. At this moment composerDependencies = []
         return []
     
-    return npmDependencies
-
-def get_yarn_dependencies(package):
-    pass
+    return [word.split(':')[0] for word in yarnDependencies]
 
 def get_chocolate_dependencies(package):
     pass
@@ -167,7 +160,6 @@ def get_brew_dependencies(package):
         list. A list of all dependencies found.
 
     """
-
     p = utility.get_dependencies("brew", package)
 
     try:
