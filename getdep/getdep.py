@@ -144,9 +144,34 @@ def get_yarn_dependencies(package):
     
     return [word.split(':')[0] for word in yarnDependencies]
 
-def get_chocolate_dependencies(package):
-    pass
+# Use for chocolatey and nuget
+def get_chocolatey_dependencies(package):
+    chocoDependencies = []
+    p = utility.get_dependencies("choco", package)
+    try :
+        data = json.loads(p)
+        chocoDependencies = []
 
+        verCount = data["items"][0]["count"] - 1 
+        items = data["items"][0]["items"][verCount]
+        chocoDependencyGroups = items["catalogEntry"]["dependencyGroups"]
+
+        for word in chocoDependencyGroups:
+            chocoDependencies.append(word["targetFramework"])
+
+    except UnboundLocalError:
+        print("Your Package Management System : is not supported")
+        utility.print_supported_pms()
+        return []
+    except KeyError:
+        print("This package doesn't exist on nuget or chocolatey")
+    except json.decoder.JSONDecodeError:
+        # if data doesn't exist. At this moment composerDependencies = []
+        return []
+    
+    return chocoDependencies
+
+    
 def get_pacman_dependencies(package):
     pass
 
