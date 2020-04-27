@@ -144,7 +144,7 @@ def get_yarn_dependencies(package):
     
     return [word.split(':')[0] for word in yarnDependencies]
 
-# Use for chocolatey and nuget
+# Use for chocolatey and Nuget
 def get_chocolatey_dependencies(package):
     """"""
     package = package.lower()
@@ -172,7 +172,6 @@ def get_chocolatey_dependencies(package):
         return []
     
     return chocoDependencies
-
     
 def get_pacman_dependencies(package):
     pass
@@ -190,6 +189,7 @@ def get_brew_dependencies(package):
     p = utility.get_dependencies("brew", package)
 
     try:
+        # TODO : Search for other dependencies : uses_from_macos, build
         brewDependencies = json.loads(p)["dependencies"]
         
     except TypeError:
@@ -199,7 +199,6 @@ def get_brew_dependencies(package):
         return []
     
     return [word.split("@")[0] for word in brewDependencies]
-
 
 def get_gem_dependencies_local(package): 
     """Get list of dependencies from gem command.

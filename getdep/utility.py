@@ -81,6 +81,7 @@ def get_dependencies(pms_name, package):
         base_url = "https://pypi.org/pypi/"
         url = base_url + package + "/json" 
         return requests.get(url,stream=True).text
+    # used for nuget and chocolatey    
     elif pms_name == 'choco' or pms_name == 'dotnet':
         base_url = "https://api.nuget.org/v3/registration3/"
         url = base_url + package + "/index.json" 
