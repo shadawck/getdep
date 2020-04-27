@@ -35,7 +35,7 @@ setup(
     packages=["getdep"],
     include_package_data=True,
     install_requires=["requests"],
-    keywords='security, dependencies, package management, dependencies manager', 'composer', 'yarn', 'apt', 'chocolatey', 'nuget',
+    keywords='security, dependencies, package management, dependencies manager, composer, yarn, apt, chocolatey, nuget',
     tests_require=test_deps,
     extras_require=extras
 )
