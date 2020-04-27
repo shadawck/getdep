@@ -148,7 +148,6 @@ def get_npm_dependencies(package):
     
     return npmDependencies
 
-
 def get_yarn_dependencies(package):
     pass
 
@@ -159,38 +158,60 @@ def get_pacman_dependencies(package):
     pass
 
 def get_brew_dependencies(package):
-    pass
+    """Get list of dependencies from brew command.
 
-#def get_gem_dependencies_local(package): 
-#    """Get list of dependencies from gem command.
-#  
-#    Args:
-#        package (str): The package name for the gem package you want to install.
-#
-#    Return:
-#        list. A list of all dependencies found.
-#
-#    """
-#    gemDependencies = []
-#    try:
-#        p = utility.get_dependencies("gem", package)
-#
-#        motif = p.stdout.split("\n")
-#
-#        for word in motif[0:-1]: 
-#            # remvove different Gem version
-#            if word.startswith(package):
-#                continue 
-#            gemDependencies.append(word.split("--version")[0].strip())
-#
-#        # remove double
-#        gemDependencies = list(OrderedDict.fromkeys(gemDependencies))
-#
-#        return gemDependencies
-#        
-#    except UnboundLocalError:
-#        print("Your Package Management System : is not supported")
-#        utility.print_supported_pms()
-#        return []
+    Args:
+        package (str): The package name for the brew formulae you want to install.
+
+    Return:
+        list. A list of all dependencies found.
+
+    """
+
+    p = utility.get_dependencies("brew", package)
+
+    try:
+        brewDependencies = json.loads(p)["dependencies"]
+        
+    except TypeError:
+        return []
+    except json.decoder.JSONDecodeError:  
+        print("The package" ,package, "was not found on brew")
+        return []
+    
+    return [word.split("@")[0] for word in brewDependencies]
+
+
+def get_gem_dependencies_local(package): 
+    """Get list of dependencies from gem command.
+  
+    Args:
+        package (str): The package name for the gem package you want to install.
+
+    Return:
+        list. A list of all dependencies found.
+
+    """
+    gemDependencies = []
+    try:
+        p = utility.get_dependencies("gem", package)
+
+        motif = p.stdout.split("\n")
+
+        for word in motif[0:-1]: 
+            # remvove different Gem version
+            if word.startswith(package):
+                continue 
+            gemDependencies.append(word.split("--version")[0].strip())
+
+        # remove double
+        gemDependencies = list(OrderedDict.fromkeys(gemDependencies))
+
+        return gemDependencies
+        
+    except UnboundLocalError:
+        print("Your Package Management System : is not supported")
+        utility.print_supported_pms()
+        return []
 
 

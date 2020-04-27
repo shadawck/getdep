@@ -25,6 +25,14 @@ def print_supported_pms():
     for pms_name in supported_pms : 
         print("\t", pms_name)
 
+def print_dependencies(package, listDependencies):
+    if listDependencies == [] :
+        print("No dependencies found")
+    else :
+        print("The dependencies for <" + package + "> are :")
+        for dep in listDependencies : 
+            print("...", dep)
+
 def get_dependencies(pms_name, package):
     """Find Dependencies
 
@@ -52,6 +60,11 @@ def get_dependencies(pms_name, package):
         url = base_url + package + ".json" 
         return requests.get(url,stream=True).text
         
+    elif pms_name=='brew':
+        base_url = "https://formulae.brew.sh/api/formula/"
+        url = base_url + package + ".json" 
+        return requests.get(url,stream=True).text
+        
     elif pms_name == 'composer' :  
         base_url = "https://repo.packagist.org/packages/"
         # Make api request to packagist # Ex : GET https://repo.packagist.org/packages/paragonie/random-lib.json
@@ -67,10 +80,3 @@ def get_dependencies(pms_name, package):
     p = subprocess.run(commandToRun, stdout=subprocess.PIPE,  encoding="ascii")
     return p
 
-def print_dependencies(package, listDependencies):
-    if listDependencies == [] :
-        print("No dependencies found")
-    else :
-        print("The dependencies for <" + package + "> are :")
-        for dep in listDependencies : 
-            print("...", dep)
