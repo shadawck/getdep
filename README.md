@@ -42,7 +42,11 @@ Supported PMS are :
          composer   
          gem        
          npm        
-         pip    
+         yarn       
+         brew       
+         pip        
+         choco      
+         dotnet     
 ```
 
 ## Note 
