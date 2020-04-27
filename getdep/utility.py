@@ -17,7 +17,9 @@ def get_supported_pms():
             'npm',
             'yarn',
             'brew',
-            'pip'
+            'pip',
+            'choco',
+            'dotnet'
             ]
     
 def print_supported_pms():
