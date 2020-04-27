@@ -31,11 +31,11 @@ class TestGetdep:
 
         assert set(cst_dep) == set(dep)
     
-    def test_getNpmDependencies(self):
+    def test_getYarnDependencies(self):
         package = "gulp"
         cst_dep = ['glob-watcher', 'gulp-cli', 'undertaker', 'vinyl-fs']
 
-        dep = getdep.get_yarn_dependencies(package)
+        dep = getdep.get_npm_dependencies(package)
 
         assert set(cst_dep) == set(dep)
     
