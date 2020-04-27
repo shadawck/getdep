@@ -146,6 +146,8 @@ def get_yarn_dependencies(package):
 
 # Use for chocolatey and nuget
 def get_chocolatey_dependencies(package):
+    """"""
+    package = package.lower()
     chocoDependencies = []
     p = utility.get_dependencies("choco", package)
     try :
