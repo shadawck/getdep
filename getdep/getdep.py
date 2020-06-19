@@ -254,15 +254,11 @@ def get_yum_dependencies(package):
 
     p = utility.get_dependencies("yum", package)
     # filter packages
-    for word in p.stdout.split():
-        pprint(word)
-        
-        #if word.startswith("Depends:") or word.endswith(")") or word.startswith("("):
-        #    continue
-        #yumDependencies.append(word)
+    output = p.stdout.split()[2:-1]
 
-    # remove double and the first element which is the "package" name
-    yumDependencies = list(OrderedDict.fromkeys(yumDependencies[1:]))
+    # 3 : start with the first provider. A step for 4 to skip : "dependency" string, the dependency and the "provider" string
+    # remove double with set (cause of i386 and x64 of same dependency)
+    yumDependencies = list(set([output[i] for i in range(3,len(output),4)]))
 
     return yumDependencies
 
