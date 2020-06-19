@@ -2,6 +2,7 @@ import json
 from collections import OrderedDict
 from getdep import utility
 from pprint import pprint
+
 def get_apt_dependencies(package):
     """Get list of dependencies from apt command.
     
@@ -146,7 +147,9 @@ def get_yarn_dependencies(package):
 
 # Use for chocolatey and Nuget
 def get_chocolatey_dependencies(package):
-    """"""
+    """
+    
+    """
     package = package.lower()
     chocoDependencies = []
     p = utility.get_dependencies("choco", package)
@@ -232,4 +235,8 @@ def get_gem_dependencies_local(package):
         utility.print_supported_pms()
         return []
 
+
+# Used for RPM-based Linux distributions (fedora, CentOS). Basicaly any package using rpm and yum (soon DNF)
+def get_yum_dependencies():
+    pass
 

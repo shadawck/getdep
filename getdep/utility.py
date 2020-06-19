@@ -19,7 +19,8 @@ def get_supported_pms():
             'brew',
             'pip',
             'choco',
-            'dotnet'
+            'dotnet',
+            'yum,dnf,rpm'
             ]
     
 def print_supported_pms():
@@ -57,6 +58,11 @@ def get_dependencies(pms_name, package):
         commandToRun = ["sudo", "apt-rdepends", str(package)]
         p = subprocess.run(commandToRun, stdout=subprocess.PIPE,  encoding="ascii")
         return p
+    elif pms_name=="rpm" or pms_name=='yum' or pms_name=="dnf":
+        commandToRun = ["sudo", "yum", "-q", "deplist", str(package)]
+        p = subprocess.run(commandToRun, stdout=subprocess.PIPE,  encoding="ascii")
+        return p
+    
         
     elif pms_name=='yarn' or pms_name == 'npm':
         base_url = "https://cdn.jsdelivr.net/npm/"
@@ -88,5 +94,3 @@ def get_dependencies(pms_name, package):
         base_url = "https://api.nuget.org/v3/registration3/"
         url = base_url + package + "/index.json" 
         return requests.get(url,stream=True).text
-
-
