@@ -251,7 +251,6 @@ def get_yum_dependencies(package):
     """
 
     yumDependencies = []
-
     p = utility.get_dependencies("yum", package)
     # filter packages
     output = p.stdout.split()[2:-1]
