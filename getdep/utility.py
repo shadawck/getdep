@@ -34,7 +34,7 @@ def print_dependencies(package, listDependencies):
     if listDependencies == [] :
         print("No dependencies found")
     else :
-        print("The dependencies for <" + package + "> are :")
+        print("The dependencies for <" ,package,"> are :")
         for dep in listDependencies : 
             print("...", dep)
 
@@ -63,7 +63,6 @@ def get_dependencies(pms_name, package):
         p = subprocess.run(commandToRun, stdout=subprocess.PIPE,  encoding="ascii")
         return p
     
-        
     elif pms_name=='yarn' or pms_name == 'npm':
         base_url = "https://cdn.jsdelivr.net/npm/"
         url = base_url + package + "/package.json" 

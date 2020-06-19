@@ -237,6 +237,33 @@ def get_gem_dependencies_local(package):
 
 
 # Used for RPM-based Linux distributions (fedora, CentOS). Basicaly any package using rpm and yum (soon DNF)
-def get_yum_dependencies():
-    pass
+def get_yum_dependencies(package):
+    """Get list of dependencies from yum command
+
+    Also apply for RPM-based Linux distribution like Fedora, SuSE, CentOS
+    
+    Args:
+        package (str): The package name for the apt package you want to install
+
+    Return:
+        list. A list of all dependencies found.
+
+    """
+
+    yumDependencies = []
+
+    p = utility.get_dependencies("yum", package)
+    # filter packages
+    for word in p.stdout.split():
+        pprint(word)
+        
+        #if word.startswith("Depends:") or word.endswith(")") or word.startswith("("):
+        #    continue
+        #yumDependencies.append(word)
+
+    # remove double and the first element which is the "package" name
+    yumDependencies = list(OrderedDict.fromkeys(yumDependencies[1:]))
+
+    return yumDependencies
+
 
