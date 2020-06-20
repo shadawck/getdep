@@ -5,12 +5,23 @@ from pprint import pprint
 
 def get_apt_dependencies(package):
     """Get list of dependencies from apt command.
+
+    You need to have apt and apt-rdepends installed on your system. 
     
     Args:
         package (str): The package name for the apt package you want to install
 
     Return:
         list. A list of all dependencies found.
+
+    Exemple:
+
+    .. code-block:: python
+
+        >>> from getdep import getdep 
+        >>> getdep.get_apt_dependencies("nano")
+        ['libc6', 'libncursesw6', 'libtinfo6', 'libcrypt1', 'libgcc-s1', 'gcc-10-base']
+
 
     """
     aptDependencies = []
@@ -26,13 +37,22 @@ def get_apt_dependencies(package):
     return aptDependencies
 
 def get_pip_dependencies(package): 
-    """Get list of dependencies from pip command.
+    """Get list of dependencies from pip package.
 
     Args:
         package (str): The package name for the pip package you want to install.
 
     Return:
         list. A list of all dependencies found.
+
+    Exemple:
+
+    .. code-block:: python
+
+        >>> from getdep import getdep 
+        >>> getdep.get_pip_dependencies("tensorflow")
+        ['absl-py', 'astunparse', 'gast', 'google-pasta', 'h5py', 'keras-preprocessing', 'numpy', 'opt-einsum', 'protobuf', 'tensorboard', 
+        'tensorflow-estimator', 'termcolor', 'wrapt', 'six', 'grpcio', 'wheel', 'mock', 'functools32', 'scipy', 'backports.weakref', 'enum34']
 
     """
 
@@ -58,7 +78,7 @@ def get_pip_dependencies(package):
         
 def get_composer_dependencies(package): 
     """
-    Get list of dependencies from composer command.
+    Get list of dependencies from composer package.
         
     Args:
         package (str): The package name for the composer package you want to install.
@@ -66,6 +86,14 @@ def get_composer_dependencies(package):
 
     Return:
         list. A list of all dependencies found.
+
+    Exemples:
+
+    .. code-block:: python
+
+        >>> from getdep import getdep 
+        >>> getdep.get_composer_dependencies("twig/twig")
+        ['php', 'symfony/polyfill-mbstring', 'symfony/polyfill-ctype']
 
     """
     composerDependencies = []
@@ -89,20 +117,29 @@ def get_composer_dependencies(package):
         utility.print_supported_pms()
         return []
     except KeyError:
-        print("This package doesn't exist on packagist")
+        # if data doesn't exist. At this moment composerDependencies = []
         return []
     except json.decoder.JSONDecodeError:
-        # if data doesn't exist. At this moment composerDependencies = []
+        print("This package doesn't exist on packagist")
         return []
 
 def get_gem_dependencies(package):
-    """Get list of dependencies from gem command.
+    """Get list of dependencies for gem package.
   
     Args:
         package (str): The package name for the gem package you want to install.
 
     Return:
         list. A list of all dependencies found.
+
+    Exemple:
+
+    .. code-block:: python
+        
+        >>> from getdep import getdep 
+        >>> getdep.get_gem_dependencies("rail")
+        ['actioncable', 'actionmailbox', 'actionmailer', 'actionpack', 'actiontext', 'actionview', 'activejob', 'activemodel', 'activerecord', 'activestorage', 
+        'activesupport', 'bundler', 'railties', 'sprockets-rails']
 
     """
 
@@ -121,35 +158,75 @@ def get_gem_dependencies(package):
         utility.print_supported_pms()
         return []
     except KeyError:
-        print("This package doesn't exist on rubygem")
-    except json.decoder.JSONDecodeError:
-        # if data doesn't exist. At this moment composerDependencies = []
         return []
+    except json.decoder.JSONDecodeError:
+        print("This package doesn't exist on rubygem")
 
 # Use yarn for npm and yarn pms
-def get_yarn_dependencies(package):
-    yarnDependencies = []
-    p = utility.get_dependencies("yarn", package)
+def get_npm_dependencies(package):
+    """Get list of dependencies for npm and yarn package.
+  
+    Args:
+        package (str): The package name for the npm/yarn package you want to install.
+
+    Return:
+        list. A list of all dependencies found.
+
+    Exemple:
+
+    .. code-block:: python
+        
+        >>> from getdep import getdep 
+        >>> getdep.get_npm_dependencies("express")
+        ['accepts', 'array-flatten', 'body-parser', 'content-disposition', 'content-type', 'cookie', 'cookie-signature',
+         'debug', 'depd', 'encodeurl', 'escape-html', 'etag', 'finalhandler', 'fresh', 'merge-descriptors', 'methods', 
+         'on-finished', 'parseurl', 'path-to-regexp', 'proxy-addr', 'qs', 'range-parser', 'safe-buffer', 'send', 'serve-static', 
+         'setprototypeof', 'statuses', 'type-is', 'utils-merge', 'vary']
+    
+    """
+
+    npmDependencies = []
+    p = utility.get_dependencies("npm", package)
     try :
-        yarnDependencies = json.loads(p)["dependencies"]
+        npmDependencies = json.loads(p.text)["dependencies"]
 
     except UnboundLocalError:
         print("Your Package Management System : is not supported")
         utility.print_supported_pms()
         return []
     except KeyError:
-        print("This package doesn't exist on yarn")
+        # no dependencies found
+        if p.status_code == 200:
+            return []
     except json.decoder.JSONDecodeError:
-        # if data doesn't exist. At this moment composerDependencies = []
-        return []
+            print("Package not found on npm")
+            return []
     
-    return [word.split(':')[0] for word in yarnDependencies]
+    return [word.split(':')[0] for word in npmDependencies]
 
 # Use for chocolatey and Nuget
 def get_chocolatey_dependencies(package):
-    """
+    """Get list of dependencies for nuget and chocolatey
+  
+    Args:
+        package (str): The package name for the nuget or chocolatey package you want to install.
+
+    Return:
+        list. A list of all dependencies found.
+
+    Exemple:
+
+    .. code-block:: python
+        
+        >>> from getdep import getdep 
+        >>> getdep.get_chocolatey_dependencies("castle.core")
+        >>> getdep.get_chocolatey_dependencies("castle.core")
+        ['.NETStandard1.3', '.NETFramework4.5', '.NETFramework3.5', '.NETFramework4.0', '.NETStandard1.5']
+
+    TODO: separate nuget and chocolatey implementation
     
     """
+    
     package = package.lower()
     chocoDependencies = []
     p = utility.get_dependencies("choco", package)
@@ -175,9 +252,6 @@ def get_chocolatey_dependencies(package):
         return []
     
     return chocoDependencies
-    
-def get_pacman_dependencies(package):
-    pass
 
 def get_brew_dependencies(package):
     """Get list of dependencies from brew command.
@@ -188,7 +262,18 @@ def get_brew_dependencies(package):
     Return:
         list. A list of all dependencies found.
 
+    Exemple:
+
+    .. code-block:: python
+        
+        >>> from getdep import getdep 
+        >>> getdep.get_brew_dependencies("")
+
+
+    TODO: separate nuget and chocolatey implementation
+
     """
+
     p = utility.get_dependencies("brew", package)
 
     try:
@@ -259,3 +344,6 @@ def get_yum_dependencies(package):
     yumDependencies = list(set([output[i] for i in range(3,len(output),4)]))
 
     return yumDependencies
+
+def get_pacman_dependencies(package):
+    pass

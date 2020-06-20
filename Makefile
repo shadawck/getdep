@@ -1,5 +1,7 @@
 MODULE=getdep
 
+docs:
+	cd docs && make html
 
 require:
 	python3 -m pip install -r requirements.txt
@@ -26,6 +28,7 @@ fclean: clean
 	rm -rf build/
 	rm -rf dist/
 	rm -rf ${MODULE}.egg-info
+	cd docs && make clean
 
 build:
 	python3 setup.py sdist bdist_wheel --bdist-dir ~/temp/bdistwheel
@@ -34,4 +37,4 @@ deploy:
 	twine check dist/*
 	twine upload dist/*
 
-.PHONY:  clean fclean test coverage
+.PHONY:  clean fclean test coverage docs

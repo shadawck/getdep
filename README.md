@@ -50,4 +50,4 @@ Supported PMS are :
 ```
 
 ## Note 
-You must have the apt, rpm, and yum installed on your system if you want to get one of theirs packages dependencies
+You must have the apt, rpm, and yum installed on your system if you want to get one of theirs packages dependencies.

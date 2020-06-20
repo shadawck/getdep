@@ -65,8 +65,8 @@ def get_dependencies(pms_name, package):
     
     elif pms_name=='yarn' or pms_name == 'npm':
         base_url = "https://cdn.jsdelivr.net/npm/"
-        url = base_url + package + "/package.json" 
-        return requests.get(url,stream=True).text
+        url = base_url + package + "/package.json"
+        return requests.get(url,stream=True)
     
     elif pms_name=='gem' :
         base_url = "https://rubygems.org/api/v1/gems/"
