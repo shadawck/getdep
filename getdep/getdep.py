@@ -235,7 +235,6 @@ def get_gem_dependencies_local(package):
         utility.print_supported_pms()
         return []
 
-
 # Used for RPM-based Linux distributions (fedora, CentOS). Basicaly any package using rpm and yum (soon DNF)
 def get_yum_dependencies(package):
     """Get list of dependencies from yum command
@@ -260,5 +259,3 @@ def get_yum_dependencies(package):
     yumDependencies = list(set([output[i] for i in range(3,len(output),4)]))
 
     return yumDependencies
-
-
