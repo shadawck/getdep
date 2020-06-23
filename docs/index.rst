@@ -5,7 +5,8 @@
 
 Getdep documentation
 ====================================
-<Description>
+
+Get dependencies for a given package management system and a given package. 
 
 .. toctree::
    :maxdepth: 2
