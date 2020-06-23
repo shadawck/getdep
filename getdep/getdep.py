@@ -333,7 +333,7 @@ def get_yum_dependencies(package):
         list. A list of all dependencies found.
 
     """
-
+    
     yumDependencies = []
     p = utility.get_dependencies("yum", package)
     # filter packages
