@@ -254,7 +254,7 @@ def get_chocolatey_dependencies(package):
     return chocoDependencies
 
 def get_brew_dependencies(package):
-    """Get list of dependencies from brew command.
+    """Get list of dependencies from homebrew package.
 
     Args:
         package (str): The package name for the brew formulae you want to install.
@@ -267,10 +267,8 @@ def get_brew_dependencies(package):
     .. code-block:: python
         
         >>> from getdep import getdep 
-        >>> getdep.get_brew_dependencies("")
-
-
-    TODO: separate nuget and chocolatey implementation
+        >>> getdep.get_brew_dependencies("vim")
+        ['gettext', 'lua', 'perl', 'python', 'ruby']
 
     """
 
@@ -288,38 +286,6 @@ def get_brew_dependencies(package):
     
     return [word.split("@")[0] for word in brewDependencies]
 
-def get_gem_dependencies_local(package): 
-    """Get list of dependencies from gem command.
-  
-    Args:
-        package (str): The package name for the gem package you want to install.
-
-    Return:
-        list. A list of all dependencies found.
-
-    """
-    gemDependencies = []
-    try:
-        p = utility.get_dependencies("gem", package)
-
-        motif = p.stdout.split("\n")
-
-        for word in motif[0:-1]: 
-            # remvove different Gem version
-            if word.startswith(package):
-                continue 
-            gemDependencies.append(word.split("--version")[0].strip())
-
-        # remove double
-        gemDependencies = list(OrderedDict.fromkeys(gemDependencies))
-
-        return gemDependencies
-        
-    except UnboundLocalError:
-        print("Your Package Management System : is not supported")
-        utility.print_supported_pms()
-        return []
-
 # Used for RPM-based Linux distributions (fedora, CentOS). Basicaly any package using rpm and yum (soon DNF)
 def get_yum_dependencies(package):
     """Get list of dependencies from yum command
@@ -331,6 +297,16 @@ def get_yum_dependencies(package):
 
     Return:
         list. A list of all dependencies found.
+
+    Exemple:
+
+    .. code-block:: python
+        
+        >>> from getdep import getdep 
+        >>> getdep.get_yum_dependencies("rust")
+        ['gcc-8.3.1-5.el8.0.2.x86_64', 'glibc-2.28-101.el8.i686', 'llvm-libs-9.0.1-4.module_el8.2.0+309+0c7b6b03.x86_64', 'rust-std-static(x86-64)', 
+        'glibc-2.28-101.el8.x86_64', 'libgcc-8.3.1-5.el8.0.2.x86_64', 'libstdc++-8.3.1-5.el8.0.2.x86_64']
+
 
     """
     
@@ -345,5 +321,41 @@ def get_yum_dependencies(package):
 
     return yumDependencies
 
-def get_pacman_dependencies(package):
-    pass
+# TODO: pacman PMS
+#def get_pacman_dependencies(package):
+#    pass
+
+
+
+## depreciated
+#def get_gem_dependencies_local(package): 
+#    """Get list of dependencies from gem command.
+#  
+#    Args:
+#        package (str): The package name for the gem package you want to install.
+#
+#    Return:
+#        list. A list of all dependencies found.
+#
+#    """
+#    gemDependencies = []
+#    try:
+#        p = utility.get_dependencies("gem", package)
+#
+#        motif = p.stdout.split("\n")
+#
+#        for word in motif[0:-1]: 
+#            # remvove different Gem version
+#            if word.startswith(package):
+#                continue 
+#            gemDependencies.append(word.split("--version")[0].strip())
+#
+#        # remove double
+#        gemDependencies = list(OrderedDict.fromkeys(gemDependencies))
+#
+#        return gemDependencies
+#        
+#    except UnboundLocalError:
+#        print("Your Package Management System : is not supported")
+#        utility.print_supported_pms()
+#        return []
