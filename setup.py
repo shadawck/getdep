@@ -18,7 +18,7 @@ extras = {
 # This call to setup() does all the work
 setup(
     name="getdep",
-    version="1.2.0",
+    version="1.2.1",
     description="Get dependencies for a given package management system and a given package",
     long_description=long_description,
     long_description_content_type="text/markdown",

@@ -1,6 +1,6 @@
 # GETDEP
 
-[![codecov](https://codecov.io/gh/remiflavien1/getdep/branch/master/graph/badge.svg)](https://codecov.io/gh/remiflavien1/getdep)  [![PyPI version](https://badge.fury.io/py/getdep.svg)](https://badge.fury.io/py/getdep) [![Requirements Status](https://requires.io/github/remiflavien1/getdep/requirements.svg?branch=master)](https://requires.io/github/remiflavien1/getdep/requirements/?branch=master) [![Code Coverage](https://github.com/remiflavien1/getdep/workflows/Code%20coverage/badge.svg)](https://github.com/remiflavien1/getdep/actions?query=workflow%3A%22Code+coverage%22) [![Quality check](https://github.com/remiflavien1/getdep/workflows/Quality%20check/badge.svg)](https://github.com/remiflavien1/getdep/actions?query=workflow%3A%22Quality+check%22) [![Documentation Status](https://readthedocs.org/projects/mitrecve/badge/?version=latest)](https://getdep.readthedocs.io/en/latest/?badge=latest)
+[![codecov](https://codecov.io/gh/remiflavien1/getdep/branch/master/graph/badge.svg)](https://codecov.io/gh/remiflavien1/getdep)  [![PyPI version](https://badge.fury.io/py/getdep.svg)](https://badge.fury.io/py/getdep) [![Requirements Status](https://requires.io/github/remiflavien1/getdep/requirements.svg?branch=master)](https://requires.io/github/remiflavien1/getdep/requirements/?branch=master) [![Documentation Status](https://readthedocs.org/projects/mitrecve/badge/?version=latest)](https://getdep.readthedocs.io/en/latest/?badge=latest)
 
 Get dependencies for a given package management system and a given package. 
 
