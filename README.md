@@ -1,6 +1,6 @@
 # GETDEP
 
-[![codecov](https://codecov.io/gh/remiflavien1/getdep/branch/master/graph/badge.svg)](https://codecov.io/gh/remiflavien1/getdep)  [![PyPI version](https://badge.fury.io/py/getdep.svg)](https://badge.fury.io/py/getdep) [![Requirements Status](https://requires.io/github/remiflavien1/getdep/requirements.svg?branch=master)](https://requires.io/github/remiflavien1/getdep/requirements/?branch=master) [![Documentation Status](https://readthedocs.org/projects/mitrecve/badge/?version=latest)](https://getdep.readthedocs.io/en/latest/?badge=latest)
+[![codecov](https://codecov.io/gh/remiflavien1/getdep/branch/master/graph/badge.svg)](https://codecov.io/gh/remiflavien1/getdep)  [![PyPI version](https://badge.fury.io/py/getdep.svg)](https://badge.fury.io/py/getdep) [![Requirements Status](https://requires.io/github/remiflavien1/getdep/requirements.svg?branch=master)](https://requires.io/github/remiflavien1/getdep/requirements/?branch=master) [![Documentation Status](https://readthedocs.org/projects/getdep/badge/?version=latest)](https://getdep.readthedocs.io/en/latest/?badge=latest)
 
 Get dependencies for a given package management system and a given package. 
 
@@ -26,7 +26,7 @@ sudo apt install apt-rdepends
 
 ## Use
 
-All the documentation is on [Readthedocs](https://mitrecve.readthedocs.io/)
+All the documentation is on [Readthedocs](https://getdep.readthedocs.io/)
 
 ## Note 
 You must have the apt, rpm, and yum installed on your system if you want to get one of theirs packages dependencies.
